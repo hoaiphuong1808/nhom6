@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư viện ảnh 12A5</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+/* ===== HEADER ===== */
+.header{
+    background:#111;   /* ĐỔI THÀNH ĐEN */
+    padding:20px 50px;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    text-decoration:underline;
+    opacity:0.8;
+}
+
+/* ===== TITLE ===== */
+.title{
+    text-align:center;
+    background:#111;   /* ĐỔI THÀNH ĐEN */
+    color:white;
+    padding:40px 0;
+    font-size:28px;
+}
+
+/* ===== MAIN ===== */
+.main{
+    background:white;
+    padding:60px 20px;
+    min-height:70vh;
+}
+
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* ===== PHOTO CARD ===== */
+.photo-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.photo-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.photo-card::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    opacity:0;
+    transition:0.4s;
+    border-radius:20px;
+}
+
+.caption{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    text-align:center;
+    opacity:0;
+    transition:0.4s;
+    width:80%;
+}
+
+.photo-card:hover img{
+    transform:scale(1.08);
+}
+
+.photo-card:hover::after{
+    opacity:1;
+}
+
+.photo-card:hover .caption{
+    opacity:1;
+}
+
+/* ===== LIGHTBOX ===== */
+#lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+#lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:15px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#111;   /* ĐỔI THÀNH ĐEN */
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-weight:bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+    .photo-grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px){
+    .photo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>🌸 26/3</div>
+    <div class="menu">
+        <a href="trangchu.html">Trang chủ</a>
+        <a href="anh.html">Ảnh</a>
+        <a href="tho.html">Nội dung</a>
+        <a href="lienhe.html">Video</a>
+    </div>
+</div>
+
+<div class="title">
+    🌸 Thư viện ảnh lớp 12A5 🌸
+</div>
+
+<div class="main">
+    <div class="photo-grid">
+
+        <div class="photo-card" onclick="openImg('picture/1.jpg')">
+            <img src="picture/1.jpg">
+            <div class="caption">Tập thể 12A5</div>
+        </div>
+
+        <div class="photo-card" onclick="openImg('picture/2.jpg')">
+            <img src="picture/2.jpg">
+            <div class="caption">Tập thể 12A5</div>
+        </div>
+
+        <div class="photo-card" onclick="openImg('picture/3.jpg')">
+            <img src="picture/3.jpg">
+            <div class="caption">Đội văn nghệ</div>
+        </div>
+
+        <div class="photo-card" onclick="openImg('picture/4.jpg')">
+            <img src="picture/4.jpg">
+            <div class="caption">Đội văn nghệ</div>
+        </div>
+
+        <div class="photo-card" onclick="openImg('picture/5.jpg')">
+            <img src="picture/5.jpg">
+            <div class="caption">Đội văn nghệ</div>
+        </div>
+
+        <div class="photo-card" onclick="openImg('picture/6.jpg')">
+            <img src="picture/6.jpg">
+            <div class="caption">Đội văn nghệ</div>
+        </div>
+
+    </div>
+</div>
+
+<div id="lightbox" onclick="closeImg()">
+    <img id="lightbox-img">
+</div>
+
+<footer>
+    🌸 12A5 - Kỷ niệm tuổi học trò 2026 🌸
+</footer>
+
+<script>
+function openImg(src){
+    document.getElementById("lightbox").style.display="flex";
+    document.getElementById("lightbox-img").src=src;
+}
+
+function closeImg(){
+    document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+</body>
+</html>
